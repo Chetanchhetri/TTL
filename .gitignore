@@ -1,0 +1,16 @@
+.env
+profile_results.txt
+index.html
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+# MyPy
+.mypy_cache/
+
+# Pytest
+.pytest_cache/
+
+venv/
+
+dev.bat

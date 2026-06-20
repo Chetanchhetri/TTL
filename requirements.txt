@@ -1,0 +1,17 @@
+eventlet
+Flask
+Flask_Cors
+Flask_SocketIO
+pdfkit
+Pillow
+PyJWT
+pymongo
+Pyrebase4
+python-dotenv
+python_dateutil
+pytz
+reportlab
+Requests
+Werkzeug
+gevent
+gunicorn
