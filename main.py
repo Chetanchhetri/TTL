@@ -1,9 +1,3 @@
-# import cProfile, sys
-
-# from gevent.pywsgi import WSGIServer
-# from geventwebsocket.handler import WebSocketHandler
-# from gevent import monkey
-
 import eventlet
 from eventlet import wsgi
 
@@ -29,7 +23,10 @@ from login import login_app
 from leaves import leaves_app
 from sales import sales_app
 from complains import complains_app
-
+from sticky_notes import sticky_notes_bp
+from location_tracking import location_tracking_app 
+from attendance import attendance_app
+from todo import todo_app
 # --- FIX: Explicitly import and apply Flask-CORS directly onto the app object ---
 from flask_cors import CORS
 CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
@@ -44,6 +41,7 @@ app.register_blueprint(admin_details_app)
 app.register_blueprint(admin_extras_app)
 app.register_blueprint(report_app)
 app.register_blueprint(email_send_app)
+app.register_blueprint(todo_app)
 app.register_blueprint(notifications_app)
 app.register_blueprint(ticket_app)
 app.register_blueprint(super_admin_app)
@@ -52,6 +50,9 @@ app.register_blueprint(login_app)
 app.register_blueprint(leaves_app)
 app.register_blueprint(sales_app)
 app.register_blueprint(complains_app)
+app.register_blueprint(sticky_notes_bp)
+app.register_blueprint(location_tracking_app) 
+app.register_blueprint(attendance_app)
 
 from flask import request, g
 import time
@@ -89,15 +90,8 @@ def log_request(response):
     
     return response
 
-
 if __name__ == '__main__':
-    # main()
-    # socketio.run(app, port=5002,debug=True)
-
-    # http = WSGIServer(('0.0.0.0', 5002), app, handler_class=WebSocketHandler)
-    # http.serve_forever()
+    print(app.url_map)
     
-    print("Starting Toggle Timer Backend on port 5002...")
-    wsgi.server(eventlet.listen(('0.0.0.0', 5002)), app, max_size=2000)
-
-    # app.run(host="0.0.0.0", port=5002, debug=True, use_reloader=False)
+    # Keep your original server execution code here
+    socketio.run(app, host='0.0.0.0', port=5002, debug=True)
